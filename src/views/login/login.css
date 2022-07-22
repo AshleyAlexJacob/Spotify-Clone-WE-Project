@@ -1,0 +1,21 @@
+.login{
+    /* A Trick */
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: black;
+    /* A Trick to automatically center */
+}
+
+.login > img{
+    width: 100%;
+}
+
+.login > a{
+    padding: 20px ;
+    background-color: #1db954;
+    border-radius: 99px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+}

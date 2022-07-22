@@ -1,11 +1,15 @@
 import './App.css';
+import Login from './views/login/Login';
 
 function App() {
   return (
     <div className="App">
-      <h4>
-        Hello Ashley 🚀
-      </h4>
+      {/* Spotify Logo */}
+      <Login/>
+
+      {/* Login with Spotify */}
+
+
     </div>
   );
 }
