@@ -18,7 +18,19 @@ const scopes = [
     "user-modify-playback-state",
   ];
 
- 
+ export const getTokenFromUrl = ()=>{
+  // fetch the token embedded in the url after hash
+  return window.location.hash
+          .substring(1)
+          
+          .split('&').reduce((initial,item)=>{
+            // accessToken=sjsjjsjs2929nsus9202&name=
+            let parts = item.split('=');
+            initial[parts[0]]=decodeURIComponent(parts[1]);
+            return initial;
+            // pulling the access token 
+          },{});
+ }
   export const loginUrlString = `${authorizationEndPoint}response_type=token&client_id=${spotifyClientId}&redirect_uri=${redirectUrl}&scope=${scopes.join(
     "%20"
   )}&show_dialog=true`;
