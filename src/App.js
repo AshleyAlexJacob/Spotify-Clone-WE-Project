@@ -38,6 +38,14 @@ const [{user,token},dispatch] = useDataLayerValue();
           playlists:playlists
         
         });
+        spotify.getPlaylist('37i9dQZEVXcOTpzpRS2aDN').then((playlists)=>{
+          console.log('Im Here');
+          dispatch({
+            type:'SET_DISCOVER_WEEKLY',
+            discover_weekly:playlists
+          
+          });
+        });
       });
     }
     // console.log('Token >>> ',_token);
