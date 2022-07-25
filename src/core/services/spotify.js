@@ -8,7 +8,6 @@ const spotifyClientId='06455159382e48e2a11fe2cd7fc9d26c';
 
  //  add the same redirect uri as mentioned in the dashboard of spotify developer
 
-// const redirectUrl ="http://spotify-we.web.app/";
 const redirectUrl ="https://spotify-we.web.app/";
 
 // 

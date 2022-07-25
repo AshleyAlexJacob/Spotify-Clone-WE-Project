@@ -1,10 +1,10 @@
 import './App.css';
 import Login from './components/login/Login';
 import React,{useEffect} from 'react';
-import { getTokenFromUrl } from './core/spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Player from './components/player/Player.jsx';
 import { useDataLayerValue } from './core/data/dataProvider';
+import { getTokenFromUrl } from './core/services/spotify';
 
 const spotify = new SpotifyWebApi();
 
@@ -31,6 +31,15 @@ const [{user,token},dispatch] = useDataLayerValue();
           user:user
         });
       });
+      spotify.getMyCurrentPlaybackState().then((r) => {
+        console.log('Here');
+        console.log('Data: ',r);
+  
+         dispatch({
+          type: "SET_ITEM",
+          item: r.item,
+        });
+      });
       spotify.getUserPlaylists().then((playlists)=>{
         console.log('Playlist Length: ',playlists.items.length);
         dispatch({
@@ -46,6 +55,18 @@ const [{user,token},dispatch] = useDataLayerValue();
           
           });
         });
+        spotify.getMyTopArtists().then((response) =>
+        dispatch({
+          type: "SET_TOP_ARTISTS",
+          top_artists: response,
+        })
+      );
+
+      dispatch({
+        type: "SET_SPOTIFY",
+        spotify: spotify,
+      });
+
       });
     }
     // console.log('Token >>> ',_token);
