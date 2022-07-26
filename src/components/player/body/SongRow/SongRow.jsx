@@ -1,10 +1,10 @@
 import React from 'react'
 import './songrow.css';
 
-function SongRow({track}) {
+function SongRow({track,playSong}) {
   return (
-    <div className='songrow'>
-            <img className='songrow__album' src={track.album.images[0].url} alt="Album Art" />
+    <div className="songrow" onClick={() => playSong(track.id)}>
+                <img className='songrow__album' src={track.album.images[0].url} alt="Album Art" />
             <div className="songrow__info">
                 <h1>{track.name}</h1>
                 <p>{track.artists.map((artist)=> artist.name).join(',','')}

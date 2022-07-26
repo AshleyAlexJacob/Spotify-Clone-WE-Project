@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react'
+import React, { useEffect,useState }  from 'react'
 import './footer.css';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -16,7 +16,10 @@ function Footer({spotify}) {
 
   const [{ item, playing},dispatch]=useDataLayerValue();
 
+  const [{shuffle,setShuffle}] = useState(false);
+
   useEffect(() => {
+    
     spotify.getMyCurrentPlaybackState().then((r) => {
   
       dispatch({
@@ -29,7 +32,40 @@ function Footer({spotify}) {
         item: r.item,
       });
     });
-  },);
+  },[spotify,dispatch]);
+
+  const shuffleUserPlaylist=()=>{
+    setShuffle(!shuffle);
+    spotify.setShuffle(shuffle).then(()=>{
+      spotify.getMyCurrentPlayingTrack().then((currentSong)=>{
+        dispatch({
+          type: "SET_ITEM",
+          item: currentSong.item,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          playing: true,
+        });
+        
+      });
+    });
+  }
+  const repeatSong=()=>{
+    spotify.setRepeat('track').then(()=>{
+      spotify.getMyCurrentPlayingTrack().then((currentSong)=>{
+        dispatch({
+          type: "SET_ITEM",
+          item: currentSong.item,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          playing: true,
+        });
+        
+      });
+    });
+  }
+ 
   const handlePlayPauseFunctionality=()=>{
     if(playing){
       spotify.pause();
@@ -98,7 +134,7 @@ function Footer({spotify}) {
       </div>
       <div className="footer__center">
       
-      <ShuffleIcon className='footer__green'></ShuffleIcon>
+      <ShuffleIcon onClick={shuffleUserPlaylist} className='footer__green'></ShuffleIcon>
       <SkipPreviousIcon  onClick={skipToPreviousSong} className='footer__icon'></SkipPreviousIcon>
       {playing ? (
           <PauseCircleIcon
@@ -114,7 +150,7 @@ function Footer({spotify}) {
           />
         )}
          <SkipNextIcon onClick={skipToNextSong} className='footer__icon'></SkipNextIcon>
-      <RepeatRoundedIcon className='footer__green'></RepeatRoundedIcon>
+      <RepeatRoundedIcon onClick={repeatSong} className='footer__green'></RepeatRoundedIcon>
       
       </div>
       <div className="footer__right">
@@ -126,7 +162,23 @@ function Footer({spotify}) {
             <VolumeDownIcon />
           </Grid>
           <Grid item xs>
-            <Slider aria-labelledby="continuous-slider" />
+            <Slider aria-labelledby="continuous-slider" onChange={
+             function(e,v,th) {
+              spotify.setVolume(v).then(()=>{
+                spotify.getMyCurrentPlayingTrack().then((currentSong)=>{
+                  dispatch({
+                    type: "SET_ITEM",
+                    item: currentSong.item,
+                  });
+                  dispatch({
+                    type: "SET_PLAYING",
+                    playing: true,
+                  });
+                  
+                });
+              }); 
+            }
+            } />
           </Grid>
         </Grid>
       

@@ -14,7 +14,9 @@ const redirectUrl ="https://spotify-we.web.app/";
 // const redirectUrl ="http://localhost:3000/";
 
 const scopes = [
-    
+ "streaming",
+  "user-read-email",
+   "user-read-private",
     "user-read-currently-playing",
     "user-read-recently-played",
     "user-read-playback-state",

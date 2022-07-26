@@ -5,8 +5,20 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import { useDataLayerValue } from '../../../core/data/dataProvider';
-function SideBar() {
-    const [{playlists},]= useDataLayerValue();
+function SideBar({spotify}) {
+    const [{playlists},dispatch]= useDataLayerValue();
+
+    const setNewPlaylist=(id)=>{
+      spotify.getPlaylist(id).then((playlists)=>{
+        console.log('Im Here');
+        dispatch({
+          type:'SET_DISCOVER_WEEKLY',
+          discover_weekly:playlists
+        
+        });
+      });
+    
+    }
   return (
     <div className='sidebar'>
         <img
@@ -15,7 +27,7 @@ function SideBar() {
         alt=""
       />
         
-        <SideBarOptions title='Home' Icon={HomeIcon}></SideBarOptions>
+        <SideBarOptions title='Home' Icon={HomeIcon} setPlaylists={setNewPlaylist} id='37i9dQZEVXcOTpzpRS2aDN'></SideBarOptions>
         <SideBarOptions title='Search' Icon={SearchIcon}></SideBarOptions>
         <SideBarOptions title='Your Library' Icon={LibraryMusicIcon}></SideBarOptions>
        <br />
@@ -26,7 +38,7 @@ function SideBar() {
        <SideBarOptions title='EDM'></SideBarOptions> */}
        
             {playlists?.items?.map((playlist) => (
-                <SideBarOptions title={playlist.name} />
+                <SideBarOptions title={playlist.name} key={playlist.id} setPlaylists={setNewPlaylist} id={playlist.id}/>
               ))}
         
         </div>
