@@ -1,4 +1,35 @@
-# Getting Started with Create React App
+# Spotify WE Clone 
+
+### Made with ❤️ with React ft. Spotify WEB API Material UI, Firebase Hosting, Github Actions
+
+In order to fully access the features of this project use it with a premium spotify account.
+
+## Have a Glance 
+
+[Spotify Clone Deployed](https://spotify-we.web.app/)
+
+
+
+##### How to Run and Build from Source Code?
+
+1. Git Clone
+2. npm install
+3. npm start
+
+
+[Reference Source Code](https://github.com/CleverProgrammers/spotify-clone)
+
+[Spotify Web API](https://developer.spotify.com/documentation/web-api/quick-start/)
+
+[Spotify Web API Wrapper](https://www.npmjs.com/package/spotify-web-api-node)
+
+[Material Icons](https://mui.com/material-ui/material-icons/)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### React Default Readme Notes
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
