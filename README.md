@@ -4,6 +4,12 @@
 
 In order to fully access the features of this project use it with a premium spotify account.
 
+This project is fully build following CI / CD Pipeline Service provided by Github Actions
+
+You can have a glance over the actions .yml file which incorporatees the jobs defined for building and deploying to firebase hosting.
+
+[Actions File](https://github.com/AshleyAlexJacob/Spotify-Clone-WE-Project/blob/main/.github/workflows/firebase.yml)
+
 ## Have a Glance 
 
 [Spotify Clone Deployed](https://spotify-we.web.app/)
